@@ -26,6 +26,7 @@ var renderCloud = function (ctx, x, y, color) {
 
 /** Returns an element of the given array with a max value.
   @param {array} arr - array of elements
+  @return {object} any item of the array
  */
 var getMaxElement = function (arr) {
   var maxElement = arr[0];
