@@ -13,16 +13,29 @@ setup.classList.remove('hidden');
 @param {array} arr - array of items
 */
 var getRandomItem = function (arr) {
-	var randomItem = Math.floor(Math.random() * arr.length);
+	var randomItem = arr[Math.floor(Math.random() * arr.length)];
 	return randomItem;
 };
 
-/** Render a wizard with given data of parameters
+var similarWizards = [];
+
+/** Creates wizards with random data of given parameters and add them into similarWizards array.
 @param {array} names - array with names
 @param {array} secondNames - array with second names
 @param {array} coatColors - array with colors (rgb format)
 @param {array} eyesColors - array with eyes colors (named color)
+@param {int} quantity - quantity of needed wizards
 */
-var renderSimilarWizard = function (names, secondNames, coatColors, eyesColors) {
-	return;
+var createSimilarWizard = function (names = NAMES, secondNames = SECOND_NAMES, coatColors = COAT_COLORS, eyesColors = EYES_COLORS, quantity = 4) {
+	for (var i = 0; i < quantity; i++) {
+		var wizard = {
+			name: `${getRandomItem(names)}` + ` ${getRandomItem(secondNames)}`,
+			coatColor: getRandomItem(coatColors),
+			eyesColor: getRandomItem(eyesColors)
+		}
+		similarWizards.push(wizard);
+	};
 };
+
+createSimilarWizard();
+console.log(similarWizards);
