@@ -31,12 +31,13 @@ var getRandomItem = function (arr) {
  *  @param {array} secondNames - array with second names
  *  @param {array} coatColors - array with colors (rgb format)
  *  @param {array} eyesColors - array with eyes colors (named color)
+ *  @param {int} quantity - Quantity of needed wizards
  *  @return {array} array with generated similar wizards
  */
 var getSimilarWizards = function (names = WizardsProperties.NAMES,
-  secondNames = WizardsProperties.SECOND_NAMES,
-  coatColors = WizardsProperties.COAT_COLORS,
-  eyesColors = WizardsProperties.EYES_COLORS, quantity = WIZARDS_QUANTITY) {
+    secondNames = WizardsProperties.SECOND_NAMES,
+    coatColors = WizardsProperties.COAT_COLORS,
+    eyesColors = WizardsProperties.EYES_COLORS, quantity = WIZARDS_QUANTITY) {
 
   var wizards = [];
   for (var i = 0; i < quantity; i++) {
@@ -51,7 +52,7 @@ var getSimilarWizards = function (names = WizardsProperties.NAMES,
 };
 
 var similarWizards = getSimilarWizards(WizardsProperties.NAMES, WizardsProperties.SECOND_NAMES,
-  WizardsProperties.COAT_COLORS, WizardsProperties.EYES_COLORS, 4);
+    WizardsProperties.COAT_COLORS, WizardsProperties.EYES_COLORS, 4);
 
 var similarWizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
 
@@ -71,7 +72,7 @@ var renderWizard = function (wizard) {
 
 var fragment = document.createDocumentFragment();
 similarWizards.forEach(function (item) {
-  fragment.appendChild(renderWizard(item))
+  fragment.appendChild(renderWizard(item));
 });
 
 similarListElement.appendChild(fragment);
