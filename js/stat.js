@@ -1,6 +1,6 @@
 'use strict';
 
-var CONSTS = {
+var Consts = {
   CLOUD_WIDTH: 420,
   CLOUD_HEIGHT: 270,
   CLOUD_X: 100,
@@ -14,19 +14,19 @@ var CONSTS = {
 };
 
 /** Renders a cloud with given arguments.
-  @param {object} ctx - canvas context
-  @param {int} x - x-axis coordinates of the cloud beginning
-  @param {int} y - y-axis coordinates of the cloud beginning
-  @param {string} color - cloud color
+ *  @param {object} ctx - canvas context
+ *  @param {int} x - x-axis coordinates of the cloud beginning
+ *  @param {int} y - y-axis coordinates of the cloud beginning
+ *  @param {string} color - cloud color
  */
 var renderCloud = function (ctx, x, y, color) {
   ctx.fillStyle = color;
-  ctx.fillRect(x, y, CONSTS.CLOUD_WIDTH, CONSTS.CLOUD_HEIGHT);
+  ctx.fillRect(x, y, Consts.CLOUD_WIDTH, Consts.CLOUD_HEIGHT);
 };
 
 /** Returns an element of the given array with a max value.
-  @param {array} arr - array of elements
-  @return {object} any item of the array
+ *  @param {array} arr - array of elements
+ *  @return {object} any item of the array
  */
 var getMaxElement = function (arr) {
   var maxElement = arr[0];
@@ -42,9 +42,9 @@ var getMaxElement = function (arr) {
 
 
 /** Renders players' scores. Takes the following arguments:
-  @param {object} ctx - canvas context;
-  @param {array} names - array of the players' names;
-  @param {array} times - array of the players' times.
+ *  @param {object} ctx - canvas context;
+ *  @param {array} names - array of the players' names;
+ *  @param {array} times - array of the players' times.
  */
 window.renderStatistics = function (ctx, names, times) {
   renderCloud(ctx, 110, 20, `rgba(0, 0, 0, 0.7)`);
@@ -61,9 +61,9 @@ window.renderStatistics = function (ctx, names, times) {
 
   for (var i = 1; i <= names.length; i++) {
 
-    var columnHeight = Math.round(CONSTS.MAX_COLUMN * times[i - 1] / maxTime);
+    var columnHeight = Math.round(Consts.MAX_COLUMN * times[i - 1] / maxTime);
 
-    ctx.fillText(`${names[i - 1]}`, (CONSTS.CLOUD_X + CONSTS.SMALL_GAP) * i, CONSTS.CLOUD_HEIGHT - CONSTS.TINY_GAP);
+    ctx.fillText(`${names[i - 1]}`, (Consts.CLOUD_X + Consts.SMALL_GAP) * i, Consts.CLOUD_HEIGHT - Consts.TINY_GAP);
 
     if (names[i - 1] === 'Вы') {
       ctx.fillStyle = `rgba(255, 0, 0, 1)`;
@@ -71,13 +71,13 @@ window.renderStatistics = function (ctx, names, times) {
       ctx.fillStyle = `hsl(240, ${Math.round(Math.random() * 100)}%, 50%)`;
     }
 
-    ctx.fillRect((CONSTS.CLOUD_X + CONSTS.SMALL_GAP) * i,
-        (CONSTS.CLOUD_Y + CONSTS.CLOUD_HEIGHT) - columnHeight - CONSTS.GAP,
-        CONSTS.COLUMN_WIDTH,
+    ctx.fillRect((Consts.CLOUD_X + Consts.SMALL_GAP) * i,
+        (Consts.CLOUD_Y + Consts.CLOUD_HEIGHT) - columnHeight - Consts.GAP,
+        Consts.COLUMN_WIDTH,
         columnHeight
     );
 
     ctx.fillStyle = `#000`;
-    ctx.fillText(`${Math.round(times[i - 1])}`, (CONSTS.CLOUD_X + CONSTS.SMALL_GAP) * i, CONSTS.CLOUD_HEIGHT - columnHeight - CONSTS.GAP);
+    ctx.fillText(`${Math.round(times[i - 1])}`, (Consts.CLOUD_X + Consts.SMALL_GAP) * i, Consts.CLOUD_HEIGHT - columnHeight - Consts.GAP);
   }
 };
