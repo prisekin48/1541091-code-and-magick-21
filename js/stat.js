@@ -13,13 +13,13 @@ var Consts = {
   GAP: 32.5
 };
 
-/** Renders a cloud with given arguments.
+/** Renders a rectangle with given arguments.
  *  @param {object} ctx - canvas context
- *  @param {int} x - x-axis coordinates of the cloud beginning
- *  @param {int} y - y-axis coordinates of the cloud beginning
- *  @param {string} color - cloud color
+ *  @param {int} x - x-axis coordinates of the rectangle beginning
+ *  @param {int} y - y-axis coordinates of the rectangle beginning
+ *  @param {string} color - rectangle color
  */
-var renderCloud = function (ctx, x, y, color) {
+var renderRect = function (ctx, x, y, color) { // find and rename
   ctx.fillStyle = color;
   ctx.fillRect(x, y, Consts.CLOUD_WIDTH, Consts.CLOUD_HEIGHT);
 };
@@ -47,8 +47,8 @@ var getMaxElement = function (arr) {
  *  @param {array} times - array of the players' times.
  */
 window.renderStatistics = function (ctx, names, times) {
-  renderCloud(ctx, 110, 20, `rgba(0, 0, 0, 0.7)`);
-  renderCloud(ctx, 100, 10, `#fff`);
+  renderRect(ctx, 110, 20, `rgba(0, 0, 0, 0.7)`);
+  renderRect(ctx, 100, 10, `#fff`);
 
   ctx.fillStyle = `#000`;
 
@@ -59,25 +59,25 @@ window.renderStatistics = function (ctx, names, times) {
 
   var maxTime = getMaxElement(times);
 
-  for (var i = 1; i <= names.length; i++) {
+  for (var i = 0; i < names.length; i++) {
 
-    var columnHeight = Math.round(Consts.MAX_COLUMN * times[i - 1] / maxTime);
+    var columnHeight = Math.round(Consts.MAX_COLUMN * times[i] / maxTime);
 
-    ctx.fillText(`${names[i - 1]}`, (Consts.CLOUD_X + Consts.SMALL_GAP) * i, Consts.CLOUD_HEIGHT - Consts.TINY_GAP);
+    ctx.fillText(`${names[i]}`, (Consts.CLOUD_X * i) + Consts.SMALL_GAP, Consts.CLOUD_HEIGHT - Consts.TINY_GAP);
 
-    if (names[i - 1] === 'Вы') {
+    if (names[i - 1] === 'Вы') { // ternary?
       ctx.fillStyle = `rgba(255, 0, 0, 1)`;
     } else {
       ctx.fillStyle = `hsl(240, ${Math.round(Math.random() * 100)}%, 50%)`;
     }
 
-    ctx.fillRect((Consts.CLOUD_X + Consts.SMALL_GAP) * i,
+    ctx.fillRect((Consts.CLOUD_X * i) + Consts.SMALL_GAP,
         (Consts.CLOUD_Y + Consts.CLOUD_HEIGHT) - columnHeight - Consts.GAP,
         Consts.COLUMN_WIDTH,
         columnHeight
     );
 
     ctx.fillStyle = `#000`;
-    ctx.fillText(`${Math.round(times[i - 1])}`, (Consts.CLOUD_X + Consts.SMALL_GAP) * i, Consts.CLOUD_HEIGHT - columnHeight - Consts.GAP);
+    ctx.fillText(`${Math.round(times[i])}`, (Consts.CLOUD_X * i) + Consts.SMALL_GAP, Consts.CLOUD_HEIGHT - columnHeight - Consts.GAP);
   }
 };

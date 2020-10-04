@@ -2,9 +2,34 @@
 
 var WIZARDS_QUANTITY = 4;
 var WizardsProperties = {
-  NAMES: ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'],
-  SECOND_NAMES: ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'],
-  COAT_COLORS: ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'],
+  NAMES: [
+    'Иван',
+    'Хуан Себастьян',
+    'Мария',
+    'Кристоф',
+    'Виктор',
+    'Юлия',
+    'Люпита',
+    'Вашингтон'
+  ],
+  SECOND_NAMES: [
+    'да Марья',
+    'Верон',
+    'Мирабелла',
+    'Вальц',
+    'Онопко',
+    'Топольницкая',
+    'Нионго',
+    'Ирвинг'
+  ],
+  COAT_COLORS: [
+    'rgb(101, 137, 164)',
+    'rgb(241, 43, 107)',
+    'rgb(146, 100, 161)',
+    'rgb(56, 159, 117)',
+    'rgb(215, 210, 55)',
+    'rgb(0, 0, 0)'
+  ],
   EYES_COLORS: ['black', 'red', 'blue', 'yellow', 'green']
 };
 
@@ -34,31 +59,27 @@ var getRandomItem = function (arr) {
  *  @param {int} quantity - Quantity of needed wizards
  *  @return {array} array with generated similar wizards
  */
-var getSimilarWizards = function (names = WizardsProperties.NAMES,
-    secondNames = WizardsProperties.SECOND_NAMES,
-    coatColors = WizardsProperties.COAT_COLORS,
-    eyesColors = WizardsProperties.EYES_COLORS, quantity = WIZARDS_QUANTITY) {
+var getSimilarWizards = function (wizardsData, quantity) {
 
   var wizards = [];
   for (var i = 0; i < quantity; i++) {
     var wizard = {
-      name: `${getRandomItem(names)}` + ` ${getRandomItem(secondNames)}`,
-      coatColor: getRandomItem(coatColors),
-      eyesColor: getRandomItem(eyesColors)
+      name: `${getRandomItem(wizardsData.NAMES)}` + ` ${getRandomItem(wizardsData.SECOND_NAMES)}`,
+      coatColor: getRandomItem(wizardsData.COAT_COLORS),
+      eyesColor: getRandomItem(wizardsData.EYES_COLORS)
     };
     wizards.push(wizard);
   }
   return wizards;
 };
 
-var similarWizards = getSimilarWizards(WizardsProperties.NAMES, WizardsProperties.SECOND_NAMES,
-    WizardsProperties.COAT_COLORS, WizardsProperties.EYES_COLORS, 4);
+var similarWizards = getSimilarWizards(WizardsProperties, WIZARDS_QUANTITY);
 
 var similarWizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
 
 /** Prepares wizard DOM-element
  *  @param {object} wizard - object with wizard properties
- *  @return {object} HTMLNode??
+ *  @return {object} HTML-element object
  */
 var renderWizard = function (wizard) {
   var wizardElement = similarWizardTemplate.cloneNode(true);
@@ -66,13 +87,13 @@ var renderWizard = function (wizard) {
   wizardElement.querySelector('.setup-similar-label').textContent = wizard.name;
   wizardElement.querySelector('.wizard-coat').style.fill = wizard.coatColor;
   wizardElement.querySelector('.wizard-eyes').style.fill = wizard.eyesColor;
-
+  console.log(wizardElement);
   return wizardElement;
 };
 
 var fragment = document.createDocumentFragment();
-similarWizards.forEach(function (item) {
-  fragment.appendChild(renderWizard(item));
+similarWizards.forEach(function (wizard) {
+  fragment.appendChild(renderWizard(wizard));
 });
 
 similarListElement.appendChild(fragment);
