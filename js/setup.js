@@ -87,7 +87,6 @@ var renderWizard = function (wizard) {
   wizardElement.querySelector('.setup-similar-label').textContent = wizard.name;
   wizardElement.querySelector('.wizard-coat').style.fill = wizard.coatColor;
   wizardElement.querySelector('.wizard-eyes').style.fill = wizard.eyesColor;
-  console.log(wizardElement);
   return wizardElement;
 };
 
@@ -97,3 +96,57 @@ similarWizards.forEach(function (wizard) {
 });
 
 similarListElement.appendChild(fragment);
+
+
+var setup = document.querySelector('.setup');
+var setupOpen = document.querySelector('.setup-open');
+var setupClose = setup.querySelector('.setup-close');
+var setupUserName = setup.querySelector('.setup-user-name');
+
+/**
+ * Handles an esc press closing setup window
+ * @param  {event} evt Taken event
+ */
+var onSetupEscPress = function (evt) {
+  if (evt.key === 'Escape' && document.activeElement.name !== 'username') {
+    evt.preventDefault();
+    closeSetupHandler();
+  }
+};
+
+/**
+ * Shows setup window and adds event listener for document object
+ */
+var openSetupHandler = function () {
+  setup.classList.remove('hidden');
+
+  document.addEventListener('keydown', onSetupEscPress);
+};
+
+/**
+ * Closes setup window and removes event listener for document object
+ */
+var closeSetupHandler = function () {
+  setup.classList.add('hidden');
+  document.removeEventListener('keydown', onSetupEscPress);
+};
+
+setupOpen.addEventListener('click', function () {
+  openSetupHandler();
+});
+
+setupOpen.addEventListener('keydown', function (evt) {
+  if (evt.key === 'Enter') {
+    openSetupHandler();
+  }
+});
+
+setupClose.addEventListener('click', function () {
+  closeSetupHandler();
+});
+
+setupClose.addEventListener('keydown', function (evt) {
+  if (evt.key === 'Enter') {
+    closeSetupHandler();
+  }
+});
