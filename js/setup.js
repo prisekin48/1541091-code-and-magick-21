@@ -149,8 +149,16 @@ setupClose.addEventListener('keydown', function (evt) {
   }
 });
 
-var wizardCoat = document.querySelector('.wizard-coat');
+var setupWizard = document.querySelector('.setup-wizard');
+
+var wizardCoat = setupWizard.querySelector('.wizard-coat');
 
 wizardCoat.addEventListener('click', function () {
   wizardCoat.style.fill = getRandomItem(WizardsProperties.COAT_COLORS);
+});
+
+var wizardEyes = setupWizard.querySelector('.wizard-eyes');
+
+wizardEyes.addEventListener('click', function () {
+  wizardEyes.style.fill = getRandomItem(WizardsProperties.EYES_COLORS);
 });
