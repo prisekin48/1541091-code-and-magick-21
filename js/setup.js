@@ -148,3 +148,9 @@ setupClose.addEventListener('keydown', function (evt) {
     closeSetupHandler();
   }
 });
+
+var wizardCoat = document.querySelector('.wizard-coat');
+
+wizardCoat.addEventListener('click', function () {
+  wizardCoat.style.fill = getRandomItem(WizardsProperties.COAT_COLORS);
+});
