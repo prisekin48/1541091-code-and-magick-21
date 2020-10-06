@@ -30,7 +30,14 @@ var WizardsProperties = {
     'rgb(215, 210, 55)',
     'rgb(0, 0, 0)'
   ],
-  EYES_COLORS: ['black', 'red', 'blue', 'yellow', 'green']
+  EYES_COLORS: ['black', 'red', 'blue', 'yellow', 'green'],
+  FIREBALL_COLORS: [
+    '#ee4830',
+    '#30a8ee',
+    '#5ce6c0',
+    '#e848d5',
+    '#e6e848'
+  ]
 };
 
 
@@ -161,4 +168,10 @@ var wizardEyes = setupWizard.querySelector('.wizard-eyes');
 
 wizardEyes.addEventListener('click', function () {
   wizardEyes.style.fill = getRandomItem(WizardsProperties.EYES_COLORS);
+});
+
+var fireball = document.querySelector('.setup-fireball-wrap');
+
+fireball.addEventListener('click', function () {
+  fireball.style.background = getRandomItem(WizardsProperties.FIREBALL_COLORS);
 });
