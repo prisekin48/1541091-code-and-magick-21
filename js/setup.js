@@ -57,10 +57,7 @@ var getRandomItem = function (arr) {
 
 
 /** Generates and returns wizards with random data of given parameters and add them into an array.
- *  @param {array} names - array with names
- *  @param {array} secondNames - array with second names
- *  @param {array} coatColors - array with colors (rgb format)
- *  @param {array} eyesColors - array with eyes colors (named color)
+ *  @param {array} wizardsData - An object with wizards mock properties
  *  @param {int} quantity - Quantity of needed wizards
  *  @return {array} array with generated similar wizards
  */
@@ -106,7 +103,6 @@ similarListElement.appendChild(fragment);
 var setup = document.querySelector('.setup');
 var setupOpen = document.querySelector('.setup-open');
 var setupClose = setup.querySelector('.setup-close');
-var setupUserName = setup.querySelector('.setup-user-name');
 
 /**
  * Handles an esc press closing setup window
