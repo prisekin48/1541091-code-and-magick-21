@@ -59,25 +59,21 @@ window.renderStatistics = function (ctx, names, times) {
 
   var maxTime = getMaxElement(times);
 
-  for (var i = 0; i < names.length; i++) {
+  for (var i = 1; i <= names.length; i++) {
 
-    var columnHeight = Math.round(Consts.MAX_COLUMN * times[i] / maxTime);
+    var columnHeight = Math.round(Consts.MAX_COLUMN * times[i - 1] / maxTime);
 
-    ctx.fillText(`${names[i]}`, (Consts.CLOUD_X * i) + Consts.SMALL_GAP, Consts.CLOUD_HEIGHT - Consts.TINY_GAP);
+    ctx.fillText(`${names[i - 1]}`, Consts.CLOUD_X * i + Consts.SMALL_GAP, Consts.CLOUD_HEIGHT - Consts.TINY_GAP);
 
-    if (names[i - 1] === 'Вы') { // ternary?
-      ctx.fillStyle = `rgba(255, 0, 0, 1)`;
-    } else {
-      ctx.fillStyle = `hsl(240, ${Math.round(Math.random() * 100)}%, 50%)`;
-    }
+    (names[i - 1] === 'Вы') ? ctx.fillStyle = `rgba(255, 0, 0, 1)` : ctx.fillStyle = `hsl(240, ${Math.round(Math.random() * 100)}%, 50%)`;
 
-    ctx.fillRect((Consts.CLOUD_X * i) + Consts.SMALL_GAP,
+    ctx.fillRect(Consts.CLOUD_X * i + Consts.SMALL_GAP,
         (Consts.CLOUD_Y + Consts.CLOUD_HEIGHT) - columnHeight - Consts.GAP,
         Consts.COLUMN_WIDTH,
         columnHeight
     );
 
     ctx.fillStyle = `#000`;
-    ctx.fillText(`${Math.round(times[i])}`, (Consts.CLOUD_X * i) + Consts.SMALL_GAP, Consts.CLOUD_HEIGHT - columnHeight - Consts.GAP);
+    ctx.fillText(`${Math.round(times[i - 1])}`, Consts.CLOUD_X * i + Consts.SMALL_GAP, Consts.CLOUD_HEIGHT - columnHeight - Consts.GAP);
   }
 };
