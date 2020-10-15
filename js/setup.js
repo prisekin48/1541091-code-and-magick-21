@@ -5,13 +5,13 @@
   var setupOpen = document.querySelector('.setup-open');
   var setupClose = setup.querySelector('.setup-close');
 
+
   /**
    * Handles an esc press closing setup window
    * @param  {event} evt Taken event
    */
   var onSetupEscPress = function (evt) {
     if (document.activeElement.name !== 'username') {
-      evt.preventDefault();
       window.util.isEscEvent(evt, closeSetupHandler);
     }
   };
@@ -30,6 +30,8 @@
   var closeSetupHandler = function () {
     setup.classList.add('hidden');
     document.removeEventListener('keydown', onSetupEscPress);
+    setup.style.left = window.move.initSetupCoords.x;
+    setup.style.top = window.move.initSetupCoords.y;
   };
 
   setupOpen.addEventListener('click', function () {

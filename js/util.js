@@ -57,6 +57,7 @@
      */
     isEscEvent: function (evt, action) {
       if (evt.keyCode === ESC_KEYCODE) {
+        evt.preventDefault();
         action();
       }
     },
