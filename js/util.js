@@ -6,17 +6,17 @@
 
   window.util = {
     Consts: {
-        CLOUD_WIDTH: 420,
-        CLOUD_HEIGHT: 270,
-        CLOUD_X: 100,
-        CLOUD_Y: 10,
-        COLUMN_WIDTH: 40,
-        MAX_COLUMN: 150,
-        BASE_GAP: 50,
-        TINY_GAP: 2.5,
-        SMALL_GAP: 15,
-        GAP: 32.5
-      },
+      CLOUD_WIDTH: 420,
+      CLOUD_HEIGHT: 270,
+      CLOUD_X: 100,
+      CLOUD_Y: 10,
+      COLUMN_WIDTH: 40,
+      MAX_COLUMN: 150,
+      BASE_GAP: 50,
+      TINY_GAP: 2.5,
+      SMALL_GAP: 15,
+      GAP: 32.5
+    },
     /** Renders a rectangle with given arguments.
      *  @param {object} ctx - canvas context
      *  @param {int} x - x-axis coordinates of the rectangle beginning
